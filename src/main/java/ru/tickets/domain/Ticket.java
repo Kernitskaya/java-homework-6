@@ -15,6 +15,10 @@ public class Ticket implements Comparable<Ticket> {
         this.flightTime = flightTime;
     }
 
+    public Ticket(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
