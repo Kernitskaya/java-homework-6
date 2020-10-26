@@ -4,6 +4,7 @@ import ru.tickets.domain.Ticket;
 import ru.tickets.repository.TicketRepository;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class TicketManager {
     private TicketRepository repository;
@@ -12,7 +13,7 @@ public class TicketManager {
         this.repository = repository;
     }
 
-    public Ticket[] findAll(String from, String to) {
+    public Ticket[] findAll(String from, String to, Comparator<Ticket> comparator) {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket: repository.findAll()) {
             if (ticket.getDeparture().equalsIgnoreCase(from) && ticket.getDestination().equalsIgnoreCase(to)) {
@@ -22,7 +23,7 @@ public class TicketManager {
                 result = tmp;
             }
         }
-        Arrays.sort(result);
+        Arrays.sort(result, comparator);
         return result;
     }
 }

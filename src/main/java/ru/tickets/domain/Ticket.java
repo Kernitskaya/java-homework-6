@@ -1,6 +1,6 @@
 package ru.tickets.domain;
 
-public class Ticket implements Comparable<Ticket> {
+public class Ticket {
     private int id;
     private int cost;
     private String departure;
@@ -37,10 +37,5 @@ public class Ticket implements Comparable<Ticket> {
 
     public int getFlightTime() {
         return flightTime;
-    }
-
-    @Override
-    public int compareTo(Ticket o) {
-        return getCost() - o.getCost();
     }
 }
