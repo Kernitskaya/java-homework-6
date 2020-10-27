@@ -60,19 +60,21 @@ class TicketManagerTest {
 
     @Test
     public void testFindInEmptyRepository() {
+        Comparator<Ticket> flightTimeComparator = new TicketFlightTimeComparator();
         TicketRepository repository = new TicketRepository();
         manager = new TicketManager(repository);
-        Ticket[] tickets = manager.findAll("MSC", "BRS");
+        Ticket[] tickets = manager.findAll("MSC", "BRS", flightTimeComparator);
         assertEquals(tickets.length, 0);
     }
 
     @Test
     public void testFindInOneItemRepository() {
+        Comparator<Ticket> flightTimeComparator = new TicketFlightTimeComparator();
         TicketRepository repository = new TicketRepository();
         Ticket ticket = new Ticket(1, 600, "MSC", "BRS", 10);
         repository.save(ticket);
         manager = new TicketManager(repository);
-        Ticket[] tickets = manager.findAll("MSC", "BRS");
+        Ticket[] tickets = manager.findAll("MSC", "BRS", flightTimeComparator);
         assertEquals(tickets.length, 1);
     }
 
