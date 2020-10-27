@@ -40,4 +40,22 @@ class TicketManagerTest {
         assertEquals(mostCheap.getFlightTime(), 10);
     }
 
+    @Test
+    public void testFindInEmptyRepository() {
+        TicketRepository repository = new TicketRepository();
+        manager = new TicketManager(repository);
+        Ticket[] tickets = manager.findAll("MSC", "BRS");
+        assertEquals(tickets.length, 0);
+    }
+
+    @Test
+    public void testFindInOneItemRepository() {
+        TicketRepository repository = new TicketRepository();
+        Ticket ticket = new Ticket(1, 600, "MSC", "BRS", 10);
+        repository.save(ticket);
+        manager = new TicketManager(repository);
+        Ticket[] tickets = manager.findAll("MSC", "BRS");
+        assertEquals(tickets.length, 1);
+    }
+
 }
